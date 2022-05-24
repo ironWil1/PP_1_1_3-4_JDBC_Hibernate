@@ -15,12 +15,11 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void createUsersTable() {
-        String user_table = "CREATE TABLE `jdbc_kata_task`.`user` ("
-                +"`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,"
-                +"`name` VARCHAR(20) NOT NULL,"
-                +"`lastName` VARCHAR(50) NOT NULL,"
-                +"`age` MEDIUMINT(120) UNSIGNED NOT NULL,"
-                +"PRIMARY KEY (`id`));";
+        String user_table = "CREATE TABLE user (" +
+                " id INTEGER not null AUTO_INCREMENT, " +
+                " name VARCHAR(255), " +
+                " lastName VARCHAR(255)," +
+                " age INTEGER, " + "PRIMARY KEY(id))";
         try(Connection con = Util.getConnection();
             Statement statement = con.createStatement()) {
             statement.executeUpdate(user_table);
