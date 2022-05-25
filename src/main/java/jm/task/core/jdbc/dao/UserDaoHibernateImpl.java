@@ -18,11 +18,11 @@ import java.util.List;
 public class UserDaoHibernateImpl implements UserDao {
     public UserDaoHibernateImpl() {
     }
-
+    Session session = Util.getSessionFactory().openSession();
     @Override
     public void createUsersTable() {
         Transaction transaction = null;
-        try (Session session = Util.getSessionFactory().openSession()) {
+        try {
             String sql = "CREATE TABLE IF NOT EXISTS jdbc_kata_task.user (" +
                     " id INTEGER not null AUTO_INCREMENT, " +
                     " name VARCHAR(255), " +
@@ -44,7 +44,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void dropUsersTable() {
         Transaction transaction = null;
-        try (Session session = Util.getSessionFactory().openSession()) {
+        try {
             String sql = "DROP TABLE if exists jdbc_kata_task.user;";
             transaction = session.beginTransaction();
             NativeQuery query = session.createNativeQuery(sql);
@@ -61,7 +61,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void saveUser(String name, String lastName, byte age) {
         Transaction transaction = null;
-        try (Session session = Util.getSessionFactory().openSession()) {
+        try {
             String sql = "INSERT INTO  jdbc_kata_task.user (name, lastName, age ) VALUE ( '"
                     + name + "', " + "'"
                     + lastName + "'," + "'"
@@ -82,7 +82,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void removeUserById(long id) {
         Transaction transaction = null;
-        try (Session session = Util.getSessionFactory().openSession()) {
+        try {
             String sql = "DELETE FROM jdbc_kata_task.user WHERE ID =" + id + ";";
             transaction = session.beginTransaction();
             NativeQuery query = session.createNativeQuery(sql);
@@ -101,7 +101,7 @@ public class UserDaoHibernateImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> listOfUsers = new ArrayList<>();
         Transaction transaction = null;
-        try (Session session = Util.getSessionFactory().openSession()) {
+        try {
             String sql = "SELECT * FROM jdbc_kata_task.user;";
             transaction = session.beginTransaction();
             NativeQuery query = session.createNativeQuery(sql);
@@ -128,7 +128,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void cleanUsersTable() {
         Transaction transaction = null;
-        try (Session session = Util.getSessionFactory().openSession()) {
+        try {
             String sql = "TRUNCATE TABLE jdbc_kata_task.user;";
             transaction = session.beginTransaction();
             NativeQuery query = session.createNativeQuery(sql);
