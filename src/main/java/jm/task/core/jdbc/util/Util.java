@@ -11,18 +11,16 @@ public class Util {
     private static final String url = "jdbc:mysql://localhost:3306/jdbc_kata_task";
     private static final String name = "root";
     private static final String psw = "9677313531";
-    public static Connection getConnection(){
+
+    public static Connection getConnection() {
         Connection connection = null;
+
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            try {
-                connection = DriverManager.getConnection(url, name, psw);
-            } catch (SQLException ex) {
-                System.out.println("Connection to BD failed");
-            }
-        } catch (ClassNotFoundException e) {
-            System.out.println("Problems with jdbc driver");
+            connection = DriverManager.getConnection(url, name, psw);
+        } catch (SQLException ex) {
+            System.out.println("Connection to BD failed");
         }
+
         return connection;
     }
     // реализуйте настройку соеденения с БД
