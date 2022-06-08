@@ -31,16 +31,14 @@ public class Util {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
-
                 Properties settings = new Properties();
-                settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
                 settings.put(Environment.URL, url);
                 settings.put(Environment.USER, name);
                 settings.put(Environment.PASS, psw);
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+                settings.put(Environment.HBM2DDL_AUTO, "update");
 
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(User.class);
@@ -56,5 +54,4 @@ public class Util {
         }
         return sessionFactory;
     }
-    // реализуйте настройку соеденения с БД
 }
