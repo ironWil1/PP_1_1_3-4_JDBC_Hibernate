@@ -19,7 +19,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 + "`lastName` VARCHAR(50) NOT NULL,"
                 + "`age` MEDIUMINT(120) UNSIGNED NOT NULL,"
                 + "PRIMARY KEY (`id`));";
-        try  {
+        try {
 
             connection.createStatement().executeUpdate(sql);
             connection.commit();
@@ -31,7 +31,7 @@ public class UserDaoJDBCImpl implements UserDao {
                     System.out.println(e.getMessage());
                 }
             }
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -48,7 +48,7 @@ public class UserDaoJDBCImpl implements UserDao {
                     System.out.println(e.getMessage());
                 }
             }
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -70,7 +70,7 @@ public class UserDaoJDBCImpl implements UserDao {
                     System.out.println(e.getMessage());
                 }
             }
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -90,7 +90,7 @@ public class UserDaoJDBCImpl implements UserDao {
                     System.out.println(e.getMessage());
                 }
             }
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -112,7 +112,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 System.out.println(user);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return listOfUsers;
     }
@@ -127,10 +127,10 @@ public class UserDaoJDBCImpl implements UserDao {
                 try {
                     connection.rollback();
                 } catch (SQLException ex) {
-                    System.out.println(e.getMessage());
+                    e.printStackTrace();
                 }
             }
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
 
