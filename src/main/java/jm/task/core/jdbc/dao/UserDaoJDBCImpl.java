@@ -2,6 +2,7 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public UserDaoJDBCImpl() {
     }
+
     Connection connection = Util.getConnection();
 
     public void createUsersTable() {
@@ -28,7 +30,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 try {
                     connection.rollback();
                 } catch (SQLException ex) {
-                    System.out.println(e.getMessage());
+                    e.printStackTrace();
                 }
             }
             e.printStackTrace();
@@ -45,7 +47,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 try {
                     connection.rollback();
                 } catch (SQLException ex) {
-                    System.out.println(e.getMessage());
+                    e.printStackTrace();
                 }
             }
             e.printStackTrace();
@@ -62,12 +64,12 @@ public class UserDaoJDBCImpl implements UserDao {
             prepStatement.executeUpdate();
             connection.commit();
             System.out.println("User с именем - " + name + " был добавлен в БД");
-        } catch(SQLException e){
+        } catch (SQLException e) {
             if (connection != null) {
                 try {
                     connection.rollback();
                 } catch (SQLException ex) {
-                    System.out.println(e.getMessage());
+                    e.printStackTrace();
                 }
             }
             e.printStackTrace();
@@ -87,7 +89,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 try {
                     connection.rollback();
                 } catch (SQLException ex) {
-                    System.out.println(e.getMessage());
+                    e.printStackTrace();
                 }
             }
             e.printStackTrace();
@@ -132,7 +134,5 @@ public class UserDaoJDBCImpl implements UserDao {
             }
             e.printStackTrace();
         }
-
-
     }
 }
