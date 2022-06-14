@@ -20,6 +20,11 @@ public class Main {
         userService.getAllUsers();
         userService.cleanUsersTable();
         userService.dropUsersTable();
-        // реализуйте алгоритм здесь
+        try {
+            Util.getConnection().close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
